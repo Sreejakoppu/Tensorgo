@@ -1,0 +1,41 @@
+.main_section {
+  height: 70px;
+  width: 100%;
+  background-color: #ea2e0e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left_section{
+    position: relative;
+    left:10px;
+}
+
+.right_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  right: 20px;
+}
+
+li {
+  list-style: none;
+}
+
+.no_underline{
+    text-decoration: none;
+    color:black;
+    font-weight:550;
+}
+
+.right_section li {
+  margin-left: 20px;
+}
+
+.ac_img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}

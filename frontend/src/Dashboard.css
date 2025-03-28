@@ -1,0 +1,15 @@
+.dashboard_section{
+    position: relative;
+    margin:10px;
+}
+
+.heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.right_heading{
+    position: relative;
+    right:20px;
+}
