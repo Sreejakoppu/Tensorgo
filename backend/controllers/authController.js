@@ -13,17 +13,23 @@ const googleAuth = async (req, res, next) => {
       `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${googleRes.tokens.access_token}`
     );
     const { email, name, picture } = userRes.data;
-    console.log("userRes", userRes);
+    console.log("userRes", userRes.data.email);
+    console.log(email, name, picture);
     let user = await User.findOne({ email });
 
     if (!user) {
+      console.log("int if :: user not found");
       user = await User.create({
         name,
         email,
         image: picture,
       });
+
+      console.log("user created");
     }
+
     const { _id } = user;
+    console.log("_id :: ", _id);
     const token = jwt.sign({ _id, email }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_TIMEOUT,
     });
@@ -34,6 +40,7 @@ const googleAuth = async (req, res, next) => {
       login: true,
     });
   } catch (err) {
+    console.error("Google Auth Error:", err); 
     res.status(500).json({
       message: "Internal Server Error",
     });

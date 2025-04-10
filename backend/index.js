@@ -3,7 +3,7 @@ const cors = require("cors");
 const bodyparser = require("body-parser");
 const app = express();
 
-const feedbackRoutes =require("./routes/feedback");
+const feedbackRoutes = require("./routes/feedback");
 
 require("dotenv").config();
 app.use(bodyparser.json());
@@ -11,11 +11,11 @@ app.use(bodyparser.urlencoded({ extended: true }));
 require("./models/dbConnect");
 const authRoutes = require("./routes/authRoutes");
 const PORT = process.env.PORT || 8080;
-
+const cliet = require("./utils/intercom");
 app.use(
   cors({
     origin: "http://localhost:5173",
-    credentials: true, 
+    credentials: true,
     optionsSuccessStatus: 200,
   })
 );
@@ -23,7 +23,7 @@ app.get("/home", (req, res) => {
   return res.json("I am pavan");
 });
 app.use("/auth", authRoutes);
-app.use("/feedback",feedbackRoutes);
+app.use("/feedback", feedbackRoutes);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on the server`, 404));

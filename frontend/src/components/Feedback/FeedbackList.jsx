@@ -56,33 +56,42 @@ const FeedbackList = ({ category }) => {
           </div>
         ) : (
           feedback
-            .filter((item) => item.category === category)
-            .map((item) => (
-              <div key={item._id} className="feedback-card">
-                <div className="feedback-rating">
-                  <span>Rating:</span>
-                  <div className="stars">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <span
-                        key={i}
-                        className={`star ${i < item.rating ? "filled" : ""}`}
-                      >
-                        ★
+            // .filter((item) => item.category === category)
+
+            .map(
+              (item) =>
+                item.category === category && (
+                  <div key={item._id} className="feedback-card">
+                    {console.log(item)}
+                    <div className="feedback-rating">
+                      <span>Rating:</span>
+                      <div className="stars">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <span
+                            key={i}
+                            className={`star ${
+                              i < item?.rating ? "filled" : ""
+                            }`}
+                          >
+                            ★
+                          </span>
+                        ))}
+                      </div>
+                      <span className="rating-value">
+                        {item?.rating === null ? 0 : item.rating}/5
                       </span>
-                    ))}
+                    </div>
+                    <div className="feedback-comments">
+                      <p>{item.comments}</p>
+                    </div>
+                    <div className="feedback-meta">
+                      <span className="feedback-date">
+                        {new Date(item.createdAt).toLocaleDateString()}
+                      </span>
+                    </div>
                   </div>
-                  <span className="rating-value">{item.rating===null?0:item.rating}/5</span>
-                </div>
-                <div className="feedback-comments">
-                  <p>{item.comments}</p>
-                </div>
-                <div className="feedback-meta">
-                  <span className="feedback-date">
-                    {new Date(item.createdAt).toLocaleDateString()}
-                  </span>
-                </div>
-              </div>
-            ))
+                )
+            )
         )}
       </div>
     </div>

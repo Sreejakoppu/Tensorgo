@@ -24,12 +24,7 @@ const Navbar = () => {
             Home
           </Link>
         </li>
-        <li>
-          <Link to={"/fbform"} className="no_underline">Orders</Link>
-        </li>
-        <li>
-          <Link className="no_underline">Store</Link>
-        </li>
+        
         <li>
           <Link to={"/feedback"} className="no_underline">FeedBack</Link>
         </li>
