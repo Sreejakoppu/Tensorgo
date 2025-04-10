@@ -50,13 +50,13 @@ exports.submitFeedback = async (req, res) => {
       });
     }
 
-    // Step 3: Create message
+    
     await client.messages.create({
       message_type: "inapp",
       subject: "New Feedback Received",
       body: `Category: ${category}\nRating: ${rating}\nComments: ${comments}`,
       from: {
-        type: "user", // ✅ Intercom expects 'user' here, not 'contact'
+        type: "user", 
         email: user.email,
       },
     });
